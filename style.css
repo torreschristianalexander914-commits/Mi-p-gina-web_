@@ -1,0 +1,822 @@
+:root {
+  --black: #000;
+  --white: #fff;
+  --gray: #7a7a7a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  /* Tambahan: Menghapus titik/bullet bawaan pada ul/li semantik yang baru */
+  list-style: none; 
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--white);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: "Saira", sans-serif;
+  /* overflow: hidden; */
+}
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 6rem;
+}
+
+.to-top {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 12px;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  fill: var(--white);
+  transform: scale(0);
+  z-index: 99;
+  transition: all .2s linear;
+}
+
+.to-top:hover {
+  background-color: var(--white);
+  fill: var(--black);
+  transition: all .2s linear;
+}
+
+.to-top.active {
+  transform: scale(1);
+  transition: all .2s linear;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 10vh;
+  z-index: 9999;
+  transition: transform 0.3s ease-in-out;
+}
+
+header.aos-init.aos-animate.hidden {
+  transform: translateY(-100%);
+}
+
+header .container .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .container .content .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .container .content .logo img {
+  width: 100px;
+}
+
+header .container .content .logo a {
+  font: bold 1.2rem "Audiowide", sans-serif;
+  text-decoration: none;
+  color: var(--white);
+}
+
+/* Penyesuaian: Menargetkan nav ul sebagai flex container */
+header .container .content nav ul {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+header .container .content nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+/* Penyesuaian target a didalam li */
+header .container .content nav ul li a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s linear;
+}
+
+header .container .content nav ul li a:hover {
+  color: var(--gray);
+  transition: 0.2s linear;
+}
+
+/* Penyesuaian target box-icon didalam li */
+header .container .content nav ul li .circle {
+  font-size: 8px;
+  width: 6px;
+  margin-top: 4px;
+  fill: var(--white);
+}
+
+header .container .content .extra-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+header .container .content .extra-nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--white);
+}
+
+header .container .content .extra-nav button {
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 150px;
+  border: none;
+  border-radius: 20px;
+}
+
+header .container .content .extra-nav button .arrow {
+  width: 20px;
+  height: 20px;
+}
+
+header .container .content .extra-nav button:hover .arrow {
+  animation: shake 0.3s linear;
+}
+
+header .container .content .extra-nav .menu {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background-image: url("/assets/bg.png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  z-index: 1;
+  background: linear-gradient(
+    0deg,
+    rgba(1, 1, 3, 1) 5%,
+    rgba(255, 255, 255, 0) 50%
+  );
+}
+
+.hero .container .content {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero .container .content img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 3%;
+  right: 0;
+}
+
+.hero .container .content h1 {
+  position: absolute;
+  font-size: 6rem;
+  top: 27%;
+  transform: translateX(5%);
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+}
+
+.hero .container .content h1 span {
+  color: transparent;
+  -webkit-text-stroke: 2px;
+  -webkit-text-stroke-color: var(--white);
+}
+
+.hero .container .content .social {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 5%;
+  height: 100%;
+  z-index: 50;
+}
+
+.hero .container .content .social hr {
+  width: 2px;
+  height: 20%;
+  background-color: var(--white);
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+
+/* Penyesuaian: Menambahkan aturan pada flex container ul social */
+.hero .container .content .social ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero .container .content .social ul li.logo a box-icon {
+  cursor: pointer;
+  fill: var(--white);
+  transition: 0.1s linear;
+}
+
+.hero .container .content .social ul li.logo a:hover box-icon {
+  fill: var(--gray);
+  transition: 0.1s linear;
+}
+
+.hero .container .content .car-stats {
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  width: 95%;
+  height: 80%;
+  z-index: 50;
+}
+
+.hero .container .content .car-stats .car-status {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero .container .content .car-stats .car-status p {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.hero .container .content .car-stats .car-status button {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  margin-left: 3rem;
+  border: 3px solid var(--white);
+  border-radius: 32px;
+  background: transparent;
+  color: var(--white);
+  overflow: hidden;
+}
+
+.hero .container .content .car-stats .car-status button::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: var(--white);
+  border-radius: 50%;
+  padding: 2px;
+  transform: scale(0);
+  transition: transform 0.1s linear;
+}
+
+.hero .container .content .car-stats .car-status button:hover::before {
+  transform: scale(70);
+  transition: transform 0.1s linear;
+}
+
+.hero .container .content .car-stats .car-status button span {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  transition: 0.3s linear;
+}
+
+.hero .container .content .car-stats .car-status button:hover span {
+  color: var(--black);
+  transition: 0.3s linear;
+}
+
+.hero .container .content .car-stats .car-status button span .arrow {
+  width: 20px;
+  height: 20px;
+  transform: rotate(135deg);
+  fill: var(--white);
+  transition: 0.3s linear;
+}
+
+.hero .container .content .car-stats .car-status button:hover span .arrow {
+  fill: var(--black);
+  transition: 0.3s linear;
+}
+
+.interior {
+  position: relative;
+  min-height: 100vh;
+}
+
+.interior::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  z-index: 1;
+  background: linear-gradient(
+    0deg,
+    rgba(1, 1, 3, 1) 5%,
+    rgba(255, 255, 255, 0) 50%
+  );
+}
+
+.interior .container .content {
+  display: flex;
+  justify-content: center;
+  z-index: 2; /* Menjamin konten terlihat */
+}
+
+/* Penyesuaian: Mengganti h1 menjadi h2 class="title" */
+.interior .container .content h2.title {
+  font: bold 3rem "Audiowide", sans-serif;
+  z-index: 2;
+  position: relative;
+}
+
+.interior .container .content video {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 90%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.tech-spec {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.tech-spec .container .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+}
+
+.tech-spec .container .content .left-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+.tech-spec .container .content .left-side .light {
+  position: absolute;
+  top: 12%;
+  left: -25%;
+  width: 55%;
+  height: 20px;
+  border-radius: 100px;
+  background-color: var(--white);
+  transform: rotate(30deg);
+  filter: blur(60px);
+}
+
+.tech-spec .container .content .left-side img {
+  width: 100%;
+}
+
+.tech-spec .container .content .right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 45%;
+}
+
+.tech-spec .container .content .right-side .title {
+  display: flex;
+  flex-direction: column;
+}
+
+.tech-spec .container .content .right-side .title .row-1,
+.tech-spec .container .content .right-side .title .row-2 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font: bold 2.5rem "Audiowide", sans-serif;
+}
+
+.tech-spec .container .content .right-side .title .row-1 hr {
+  width: 30%;
+}
+
+.tech-spec .container .content .right-side .title .row-2 {
+  color: transparent;
+  -webkit-text-stroke: 1px;
+  -webkit-text-stroke-color: var(--white);
+}
+
+.tech-spec .container .content .right-side .short-desc {
+  text-align: justify;
+}
+
+.tech-spec .container .content .right-side .specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tech-spec .container .content .right-side .specs .spec {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--white);
+  color: var(--gray);
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding-bottom: 8px; /* Memberi jarak pada border */
+}
+
+.tech-spec .container .content .right-side .specs .spec .engine {
+  color: var(--white);
+}
+
+.tech-spec .container .content .right-side .action {
+  cursor: pointer;
+  padding: 1rem 2.5rem;
+  width: 25%;
+  background-color: var(--black);
+  color: var(--white);
+  font-weight: bold;
+  border: 2px solid var(--white);
+  border-radius: 32px;
+  transition: 0.2s linear;
+}
+
+.tech-spec .container .content .right-side .action:hover {
+  background-color: var(--white);
+  color: var(--black);
+  transition: 0.2s linear;
+}
+
+.status {
+  min-height: 100vh;
+}
+
+.status .container .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.status .container .content .stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25%;
+}
+
+.status .container .content .stats .stat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 25%;
+  font-smooth: 1.2rem;
+  font-weight: 500;
+}
+
+/* Penyesuaian target: h1 yang diubah menjadi class stat-number / stat-unit */
+.status .container .content .stats .stat .stat-number, 
+.status .container .content .stats .stat .stat-unit {
+  font: bold 3rem "Audiowide", sans-serif;
+  color: var(--white);
+  z-index: 2;
+}
+
+.status .container .content .stats .stat .back {
+  position: absolute;
+  top: 15%;
+  color: var(--gray);
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.status .container .content .image {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 75%;
+}
+
+.status .container .content .image img {
+  position: absolute;
+  top: -10%;
+  width: 65%;
+  z-index: 10;
+}
+
+.status .container .content .image .circle-1,
+.status .container .content .image .circle-2,
+.status .container .content .image .circle-3 {
+  position: absolute;
+  border: 3px solid var(--gray);
+  border-radius: 50%;
+  width: 65%;
+  height: 75%;
+  animation: glow 4s ease-in-out infinite;
+}
+
+.status .container .content .image .circle-2 {
+  width: 45%;
+  height: 50%;
+  animation-delay: 3s;
+}
+
+.status .container .content .image .circle-3 {
+  width: 25%;
+  height: 25%;
+  animation-delay: 6s;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: none;
+  }
+
+  50% {
+    border: 3px solid var(--white);
+    box-shadow: 0 0 1rem var(--white);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}
+
+.order {
+  min-height: 100vh;
+}
+
+.order .container .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.order .container .content hr {
+  border: none;
+  height: 200px;
+  padding: 1px;
+  background-color: #fff;
+  margin-bottom: 3rem;
+}
+
+.order .container .content .email {
+  display: block; /* Karena diubah dari p ke label */
+  color: #b0b0b0;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.order .container .content .input {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 50%;
+  margin-bottom: 4rem;
+}
+
+.order .container .content .input input {
+  width: 65%;
+  padding: 1.5rem 2rem;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.2rem;
+  background-color: #000;
+}
+
+.order .container .content .input button {
+  cursor: pointer;
+  width: 35%;
+  padding: 1.5rem 2rem;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #000;
+  transition: 0.3s linear;
+}
+
+.order .container .content .input button:hover {
+  background-color: #fff;
+  color: #000;
+  transition: 0.3s linear;
+}
+
+.order .container .content .promotion {
+  text-align: center;
+  width: 45%;
+  color: #b0b0b0;
+  font-size: 1.1rem;
+}
+
+.order .container .content .promotion span {
+  color: #fff;
+}
+
+.order .container .content .promotion a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-top: 2px solid #fff;
+}
+
+footer .container {
+  padding: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  gap: 4rem;
+}
+
+footer .container .profile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 25%;
+}
+
+footer .container .link-container {
+  width: 70%;
+  display: flex;
+  gap: 4rem;
+}
+
+footer .container .link-container .information,
+footer .container .link-container .resource,
+footer .container .link-container .navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 30%;
+}
+
+footer .container .profile .logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+footer .container .profile .logo img {
+  width: 60px;
+  height: 60px;
+}
+
+footer .container .profile .logo a {
+  font: bold 1.4rem "Audiowide", sans-serif;
+  color: #fff;
+}
+
+footer .container .profile p {
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+footer .container .profile .social-media-container {
+  display: flex;
+  gap: 8px;
+}
+
+/* Penyesuaian target a dari asalnya elemen div */
+footer .container .profile .social-media-container .social-media {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  padding: 6px;
+  border-radius: 50%;
+  background-color: #191919;
+  transition: transform 1s linear;
+}
+
+footer .container .profile .social-media-container .social-media:hover {
+  transform: rotateY(360deg);
+}
+
+/* Penyesuaian h1 menjadi h3 */
+footer .container .link-container .information h3,
+footer .container .link-container .resource h3,
+footer .container .link-container .navigation h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+footer .container .link-container .information ul,
+footer .container .link-container .resource ul,
+footer .container .link-container .navigation ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+footer .container .link-container .information ul li,
+footer .container .link-container .resource ul li,
+footer .container .link-container .navigation ul li {
+  cursor: pointer;
+}
+
+footer .container .link-container .information ul li::after,
+footer .container .link-container .resource ul li::after,
+footer .container .link-container .navigation ul li::after {
+  content: "";
+  display: block;
+  border-bottom: 3px solid #fff;
+  width: 40%;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s linear;
+  margin-top: 4px;
+}
+
+footer .container .link-container .information ul li:hover::after,
+footer .container .link-container .resource ul li:hover::after,
+footer .container .link-container .navigation ul li:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.6s linear;
+}
+
+footer .container .link-container .information ul li a,
+footer .container .link-container .resource ul li a,
+footer .container .link-container .navigation ul li a {
+  color: #fff;
+  text-decoration: none;
+}
